@@ -38,25 +38,57 @@ Run the script to generate a report:
 python3 main.py
 ```
 ---
+
 📊 Text Analysis Report 📊
 ==================================================
 
 📝 Basic Statistics:
-• Total Words: 78,942
-• Total Letters: 379,821
-• Unique Letters: 26
+• Total Words: 74,975
+• Total Letters: 332,157
+• Unique Letters: 31
 
 📈 Character Frequency Analysis:
-Character   |     Count |  Percentage
 ----------------------------------------
-'a'         |    45,200 |      11.89%
-'b'         |    15,300 |       4.03%
-...
+Character  |    Count | Percentage
+----------------------------------------
+e          |    44172 |      13.30%
+t          |    28832 |       8.68%
+a          |    25713 |       7.74%
+o          |    23875 |       7.19%
+i          |    23480 |       7.07%
+n          |    23300 |       7.01%
+s          |    20405 |       6.14%
+r          |    19642 |       5.91%
+h          |    19196 |       5.78%
+d          |    16325 |       4.91%
+l          |    12236 |       3.68%
+m          |    10234 |       3.08%
+u          |     9896 |       2.98%
+c          |     8643 |       2.60%
+f          |     8339 |       2.51%
+y          |     7576 |       2.28%
+w          |     7362 |       2.22%
+p          |     5671 |       1.71%
+g          |     5564 |       1.68%
+b          |     4747 |       1.43%
+v          |     3717 |       1.12%
+k          |     1616 |       0.49%
+x          |      649 |       0.20%
+j          |      412 |       0.12%
+q          |      313 |       0.09%
+z          |      211 |       0.06%
+æ          |       21 |       0.01%
+ê          |        6 |       0.00%
+ô          |        2 |       0.00%
+è          |        1 |       0.00%
+é          |        1 |       0.00%
 
 🔍 Most Common Letters:
-1. 'e' (52,300 occurrences)
-2. 'a' (45,200 occurrences)
-...
+1. 'e' (44,172 occurrences)
+2. 't' (28,832 occurrences)
+3. 'a' (25,713 occurrences)
+4. 'o' (23,875 occurrences)
+5. 'i' (23,480 occurrences)
 
 ==================================================
 📊 End of Report 📊
