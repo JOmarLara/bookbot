@@ -35,4 +35,38 @@ This tool reads a text file (e.g., a classic novel like *Frankenstein*) and anal
 
 Run the script to generate a report:
 ```bash
-python main.py
+python3 main.py
+```
+---
+📊 Text Analysis Report 📊
+==================================================
+
+📝 Basic Statistics:
+• Total Words: 78,942
+• Total Letters: 379,821
+• Unique Letters: 26
+
+📈 Character Frequency Analysis:
+Character   |     Count |  Percentage
+----------------------------------------
+'a'         |    45,200 |      11.89%
+'b'         |    15,300 |       4.03%
+...
+
+🔍 Most Common Letters:
+1. 'e' (52,300 occurrences)
+2. 'a' (45,200 occurrences)
+...
+
+==================================================
+📊 End of Report 📊
+
+---
+## Analyzing a different file
+Modify the main() function to point to a new text file:
+``` code
+with open("books/newfile.txt") as f:
+    file_contents = f.read()
+```
+with open("books/newfile.txt") as f:
+    file_contents = f.read()
