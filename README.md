@@ -24,8 +24,8 @@ This tool reads a text file (e.g., a classic novel like *Frankenstein*) and anal
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/text-analysis-toolkit.git
-    cd text-analysis-toolkit
+    git clone https://github.com/JOmarLara/bookbot.git
+    cd bookbot
     ```
 2. Ensure you have the required text file to analyze. Place your `.txt` file in a folder named `books` (e.g., `books/frankenstein.txt`).
 
