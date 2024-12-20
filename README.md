@@ -40,6 +40,7 @@ python3 main.py
 ---
 
 📚 Example Output
+
 ![image](https://github.com/user-attachments/assets/ec4647b5-cb6f-4b48-bd8b-9a1e64407014)
 
 ---
