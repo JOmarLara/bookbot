@@ -68,5 +68,13 @@ Modify the main() function to point to a new text file:
 with open("books/newfile.txt") as f:
     file_contents = f.read()
 ```
-with open("books/newfile.txt") as f:
-    file_contents = f.read()
+
+---
+
+🤝 Contributing
+Contributions are welcome! Feel free to fork this repository, make your improvements, and submit a pull request.
+
+---
+
+📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
