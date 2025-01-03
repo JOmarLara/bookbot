@@ -1,3 +1,2 @@
-# Ignore the books
-
-books/**
+# Ignore venv
+/book-env/** 
