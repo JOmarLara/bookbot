@@ -1,6 +1,6 @@
-# 📊 Text Analysis Toolkit
+# 📊 BookBot
 
-Welcome to the **Text Analysis Toolkit**! This Python project provides a comprehensive way to analyze text files, generating insightful reports and visualizations that include word counts, character frequencies, sentiment analysis, and more.
+Welcome to the **BookBot**! This Python project comprehensively analyzes text files, generating insightful reports and visualizations that include word counts, character frequencies, sentiment analysis, and more.
 
 ## 🔍 About
 
