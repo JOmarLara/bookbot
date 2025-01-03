@@ -1,2 +1,5 @@
 # Ignore venv
-/book-env/** 
+/venv/** 
+
+# Ignore gen viz
+*.png

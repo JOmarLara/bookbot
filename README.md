@@ -1,62 +1,103 @@
-Bookbot is my first project!
-
 # 📊 Text Analysis Toolkit
 
-Welcome to the **Text Analysis Toolkit**! This Python project provides a concise yet powerful way to analyze text files, generating insightful reports that include word counts, character frequencies, and basic statistics.
+Welcome to the **Text Analysis Toolkit**! This Python project provides a comprehensive way to analyze text files, generating insightful reports and visualizations that include word counts, character frequencies, sentiment analysis, and more.
 
 ## 🔍 About
 
-This tool reads a text file (e.g., a classic novel like *Frankenstein*) and analyzes its content to produce a comprehensive report. It is an excellent starting point for anyone interested in text analysis, data visualization, or building practical Python applications.
+This tool reads HTML files containing text (e.g., classic novels like *Frankenstein* or *The Great Gatsby*) and performs in-depth analysis to produce a comprehensive report and visualizations. It's an excellent showcase for text analysis, natural language processing, data visualization, and practical Python application development.
 
-### Key Features:
-- **Word Count**: Counts the total number of words in the text.
-- **Character Frequency**: Analyzes the frequency of each character in the text.
-- **Percentage Breakdown**: Displays the percentage representation of each character.
-- **Top Characters**: Highlights the most frequently used characters.
+### 🌟 Key Features:
 
----
+1. **Basic Statistics**:
+   - Word count
+   - Character count (total and unique)
+   - Sentence count
+   - Average word length
+   - Flesch-Kincaid Grade Level
+
+2. **Word Analysis**:
+   - Top 10 most common words
+   - Word length distribution
+
+3. **Character Analysis**:
+   - Character frequency analysis
+   - ASCII histogram of character frequencies
+   - Top 5 most common letters
+   - Top 5 most common punctuation marks
+
+4. **Natural Language Processing**:
+   - Sentiment analysis
+   - Named Entity Recognition
+   - Part-of-Speech tagging
+
+5. **Visualizations**:
+   - Bar chart of top 10 most frequent characters
+   - Pie chart of word length distribution
+   - Heatmap of top 10 most common words
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.6 or higher
+- pip (Python package installer)
 
 ### Installation
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/JOmarLara/bookbot.git
-    cd bookbot
-    ```
-2. Ensure you have the required text file to analyze. Place your `.txt` file in a folder named `books` (e.g., `books/frankenstein.txt`).
+   ```bash
+   git clone https://github.com/YourUsername/text-analysis-toolkit.git
+   cd text-analysis-toolkit```
 
----
+2. Install required packages:
+   ``` pip install -r requirements.txt ```
+
+3. Download NLTK data:
+   ``` python nltk_download.py ```
 
 ## 💻 Usage
+1. Place your HTML files in the books folder.
+   
+2. Run the script:
+``` python main.py ```
 
-Run the script to generate a report:
-```bash
-python3 main.py
-```
----
+3. If multiple HTML files are present, you'll be prompted to choose one for analysis.
+   
+4. The script will generate a text report in the console and save visualizations as PNG files.
+   
+## 📊 Output
+### Console Report
+The script generates a detailed report in the console, including:
 
-📚 Example Output
+- Basic text statistics
+- Word frequency analysis
+- Sentiment analysis
+- Named Entity Recognition summary
+- Part-of-Speech analysis
+- Character frequency analysis with ASCII histogram
+  
+### Visualizations
+The script creates three visualization files:
+1. char_frequency.png: Bar chart of top 10 most frequent characters
+2. word_length_distribution.png: Pie chart of word length distribution
+3. top_10_words_heatmap.png: Heatmap of top 10 most common words
 
-![image](https://github.com/user-attachments/assets/ec4647b5-cb6f-4b48-bd8b-9a1e64407014)
+## 🛠 Customization
+To analyze a specific file, use the --book argument:
+``` python main.py --book <your_book>.html ```
 
----
-## Analyzing a different file
-Modify the main() function to point to a new text file:
-``` code
-with open("books/newfile.txt") as f:
-    file_contents = f.read()
-```
+To scpecify a different folder for HTML files, use the --folder argument:
+``` python main.py --folder path/to/your/folder ```
 
----
+## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-🤝 Contributing
-Contributions are welcome! Feel free to fork this repository, make your improvements, and submit a pull request.
+## 📜 License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
----
+## 🙏 Acknowledgements
+- NLTK for natural language processing capabilities
+- matplotlib for data visualization
+- Beautiful Soup for HTML parsing
 
-📜 License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## 📞 Contact
+Omar Lara - alaraom93@gmail.com
+Project Link: https://github.com/JOmarLara/bookbot.git

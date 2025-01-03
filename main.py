@@ -10,6 +10,7 @@ from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from nltk.chunk import ne_chunk
 import numpy
+import matplotlib.pyplot as plt
 
 def count_words(text):
     words = text.split()
@@ -167,7 +168,6 @@ def analyze_pos(text):
     pos_tags = pos_tag(tokens)
     return Counter(tag for word, tag in pos_tags)
 
-
 def summarize_named_entities(named_entities):
     entity_types = Counter()
     for chunk in named_entities:
@@ -175,84 +175,137 @@ def summarize_named_entities(named_entities):
             entity_types[chunk.label()] += 1
     return entity_types
 
+def create_visualizations(word_count, char_count):
+    # Create a bar chart for character frequency
+    plt.figure(figsize=(12, 6))
+    chars, freqs = zip(*sorted(char_count.items(), key=lambda x: x[1], reverse=True)[:10])
+    plt.bar(chars, freqs)
+    plt.title('Top 10 Most Frequent Characters')
+    plt.xlabel('Characters')
+    plt.ylabel('Frequency')
+    plt.savefig('char_frequency.png')
+    plt.close()
+
+    # Create a pie chart for word length distribution
+    word_lengths = Counter([len(word) for word in word_count.keys()])
+    plt.figure(figsize=(10, 10))
+    plt.pie(word_lengths.values(), labels=word_lengths.keys(), autopct='%1.1f%%')
+    plt.title('Word Length Distribution')
+    plt.savefig('word_length_distribution.png')
+    plt.close()
+
+    # Create a heatmap of top 10 most common words
+    plt.figure(figsize=(12, 8))
+    top_words = dict(sorted(word_count.items(), key=lambda x: x[1], reverse=True)[:10])
+    words = list(top_words.keys())
+    frequencies = list(top_words.values())
+
+    # Create a 2D array for the heatmap
+    heatmap_data = numpy.array([frequencies])
+
+    # Create heatmap
+    plt.imshow(heatmap_data, cmap='YlOrRd', aspect='auto')
+    plt.colorbar(label='Word Frequency')
+
+    plt.title('Top 10 Most Common Words Heatmap')
+    plt.xlabel('Words')
+    plt.ylabel('Frequency')
+    plt.xticks(range(len(words)), words, rotation=45, ha='right')
+    plt.yticks([])  # Hide y-axis ticks as we only have one row
+
+    plt.tight_layout()
+    plt.savefig('top_10_words_heatmap.png')
+    plt.close()
+
+
+
+
 def main():
-    def main():
-        print("Script started.")  # Debug print
-        parser = argparse.ArgumentParser(description="Analyze text from HTML files.")
-        parser.add_argument("--book", help="Specify a single HTML file to analyze")
-        parser.add_argument("--folder", default="books", help="Specify the folder containing HTML files (default: books)")
-        args = parser.parse_args()
+    print("Script started.")  # Debug print
+    parser = argparse.ArgumentParser(description="Analyze text from HTML files.")
+    parser.add_argument("--book", help="Specify a single HTML file to analyze")
+    parser.add_argument("--folder", default="books", help="Specify the folder containing HTML files (default: books)")
+    args = parser.parse_args()
 
-        print(f"Folder to search: {args.folder}")  # Debug print
+    print(f"Folder to search: {args.folder}")  # Debug print
 
-        if args.book:
-            file_path = os.path.join(args.folder, args.book)
-            if not os.path.exists(file_path):
-                print(f"Error: The file '{file_path}' was not found.")
-                return
-            html_files = [args.book]
-        else:
-            html_files = [f for f in os.listdir(args.folder) if f.endswith('.html')]
-
-        print(f"HTML files found: {html_files}")  # Debug print
-
-        if not html_files:
-            print(f"No HTML files found in the '{args.folder}' folder.")
-            return
-
-        if len(html_files) > 1:
-            print("Available books:")
-            for i, file in enumerate(html_files, 1):
-                print(f"{i}. {file}")
-
-            while True:
-                try:
-                    choice = int(input("\nEnter the number of the book you want to analyze: "))
-                    if 1 <= choice <= len(html_files):
-                        selected_file = html_files[choice - 1]
-                        break
-                    else:
-                        print("Invalid choice. Please try again.")
-                except ValueError:
-                    print("Please enter a valid number.")
-        else:
-            selected_file = html_files[0]
-
-        file_path = os.path.join(args.folder, selected_file)
-        print(f"\nAnalyzing {selected_file}...\n")
-
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                html_content = f.read()
-
-            # Parse HTML and extract text
-            soup = BeautifulSoup(html_content, 'html.parser')
-
-            # Remove script and style elements
-            for script in soup(["script", "style"]):
-                script.decompose()
-
-            # Get text
-            text = soup.get_text()
-
-            # Break into lines and remove leading and trailing space on each
-            lines = (line.strip() for line in text.splitlines())
-            # Break multi-headlines into a line each
-            chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
-            # Drop blank lines
-            text = '\n'.join(chunk for chunk in chunks if chunk)
-
-            generate_report(text)
-        except FileNotFoundError:
+    if args.book:
+        file_path = os.path.join(args.folder, args.book)
+        if not os.path.exists(file_path):
             print(f"Error: The file '{file_path}' was not found.")
-        except UnicodeDecodeError:
-            print(f"Error: Unable to decode '{file_path}'. The file might be in a different encoding.")
-        except Exception as e:
-            print(f"An unexpected error occurred: {str(e)}")
+            return
+        html_files = [args.book]
+    else:
+        html_files = [f for f in os.listdir(args.folder) if f.endswith('.html')]
 
-    if __name__ == "__main__":
-        main()
+    print(f"HTML files found: {html_files}")  # Debug print
 
+    if not html_files:
+        print(f"No HTML files found in the '{args.folder}' folder.")
+        return
+
+    if len(html_files) > 1:
+        print("Available books:")
+        for i, file in enumerate(html_files, 1):
+            print(f"{i}. {file}")
+
+        while True:
+            try:
+                choice = int(input("\nEnter the number of the book you want to analyze: "))
+                if 1 <= choice <= len(html_files):
+                    selected_file = html_files[choice - 1]
+                    break
+                else:
+                    print("Invalid choice. Please try again.")
+            except ValueError:
+                print("Please enter a valid number.")
+    else:
+        selected_file = html_files[0]
+
+    file_path = os.path.join(args.folder, selected_file)
+    print(f"\nAnalyzing {selected_file}...\n")
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            html_content = f.read()
+
+        # Parse HTML and extract text
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Remove script and style elements
+        for script in soup(["script", "style"]):
+            script.decompose()
+
+        # Get text
+        text = soup.get_text()
+
+        # Break into lines and remove leading and trailing space on each
+        lines = (line.strip() for line in text.splitlines())
+        # Break multi-headlines into a line each
+        chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+        # Drop blank lines
+        text = '\n'.join(chunk for chunk in chunks if chunk)
+
+        # Generate text analysis report
+        generate_report(text)
+
+        # Process file for word count and character count
+        word_count = Counter(re.findall(r'\b\w+\b', text.lower()))
+        char_count = count_characters(text)
+
+        # Create visualizations
+        create_visualizations(word_count, char_count)
+
+        print("\nReport generated successfully!")
+        print("Visualizations saved as 'char_frequency.png', 'word_length_distribution.png', and 'top_10_words_heatmap.png'")
+
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' was not found.")
+    except UnicodeDecodeError:
+        print(f"Error: Unable to decode '{file_path}'. The file might be in a different encoding.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {str(e)}")
 
 if __name__ == "__main__":
     main()
+
